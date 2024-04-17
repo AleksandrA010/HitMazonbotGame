@@ -4,9 +4,10 @@ using System.Windows.Forms;
 
 namespace HitMazonbotGame
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+        FormPlay formPlay = new FormPlay();
+        public FormMain()
         {
             InitializeComponent();
             this.pictureBox1.MouseMove += new MouseEventHandler(this.MouseMoveApp);
@@ -17,6 +18,7 @@ namespace HitMazonbotGame
 
         bool MouseClickForm = false;
         Point startPoint = Point.Empty;
+        public Point locationPoint = Point.Empty;
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -61,6 +63,13 @@ namespace HitMazonbotGame
         private void ButtonExitApp_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ButtonPlay_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            formPlay.Show();
+            formPlay.Location = this.Location;
         }
     }
 }
