@@ -35,6 +35,7 @@
             this.buttonExit2 = new System.Windows.Forms.Button();
             this.timerGame = new System.Windows.Forms.Timer(this.components);
             this.timerHit = new System.Windows.Forms.Timer(this.components);
+            this.ScoreLabel = new System.Windows.Forms.Label();
             this.Header.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +70,7 @@
             // buttonHide
             // 
             this.buttonHide.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonHide.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(50)))));
             this.buttonHide.FlatAppearance.BorderSize = 0;
             this.buttonHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -84,6 +86,7 @@
             // buttonExit2
             // 
             this.buttonExit2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonExit2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(50)))));
             this.buttonExit2.FlatAppearance.BorderSize = 0;
             this.buttonExit2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -104,14 +107,24 @@
             // 
             // timerHit
             // 
-            this.timerHit.Interval = 200;
             this.timerHit.Tick += new System.EventHandler(this.timerHit_Tick);
+            // 
+            // ScoreLabel
+            // 
+            this.ScoreLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ScoreLabel.Location = new System.Drawing.Point(12, 384);
+            this.ScoreLabel.Name = "ScoreLabel";
+            this.ScoreLabel.Size = new System.Drawing.Size(800, 31);
+            this.ScoreLabel.TabIndex = 1;
+            this.ScoreLabel.Text = "Счёт: 0";
             // 
             // FormPlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(824, 424);
+            this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.Header);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -133,5 +146,6 @@
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Timer timerGame;
         private System.Windows.Forms.Timer timerHit;
+        private System.Windows.Forms.Label ScoreLabel;
     }
 }

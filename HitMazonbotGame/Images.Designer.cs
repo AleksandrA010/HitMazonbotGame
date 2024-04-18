@@ -83,6 +83,16 @@ namespace HitMazonbotGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MazonBot {
+            get {
+                object obj = ResourceManager.GetObject("MazonBot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TitleImage {
             get {
                 object obj = ResourceManager.GetObject("TitleImage", resourceCulture);
