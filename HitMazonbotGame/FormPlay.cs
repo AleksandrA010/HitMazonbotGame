@@ -31,7 +31,16 @@ namespace HitMazonbotGame
             this.buttonHide.MouseUp += new MouseEventHandler(this.Header_MouseUp);
             this.buttonHide.MouseMove += new MouseEventHandler(this.Header_MouseMove);
 
+            this.stripOfLife.Width = 200;
+            this.stripOfLifeMax.Width = 200;
+
+            this.stripOfLifeMax.Location = new Point(this.stripOfLifeMax.Location.X + 20, this.stripOfLifeMax.Location.Y);
+            this.Life.Location = new Point(this.Life.Location.X + 20, this.Life.Location.Y - 1);
+
+            this.Life.Text = stripOfLife.Width.ToString();
+            timerGamePlay.Start();
         }
+        const int HitOnTick = 5;
 
         bool MouseClickForm = false;
         bool MouseEnterHeader = false;
@@ -126,7 +135,7 @@ namespace HitMazonbotGame
                 g.DrawImage(hammer, handlerRect);
         }
 
-        private void timerGame_Tick(object sender, EventArgs e)
+        private void TimerGame_Tick(object sender, EventArgs e)
         {
             Refresh();
 
@@ -143,13 +152,40 @@ namespace HitMazonbotGame
                 flag1 = true;
             }
 
-            if (localPosition.X > currentMazonObjectRect.X && localPosition.X < (currentMazonObjectRect.X + 50) 
-                && (localPosition.Y + 20) > currentMazonObjectRect.Y && (localPosition.Y + 20) < (currentMazonObjectRect.Y + 50)
-                && hammerIsHit)
+            if (int.Parse(Life.Text) == 0)
             {
-                mazonObjectFlag = true;
+                DialogResult result = MessageBox.Show(
+                    $"Ваш счёт: {Score}.\nХотите попробовать снова?",
+                    "Игра окончена",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.DefaultDesktopOnly);
 
-                ScoreLabel.Text = "Счёт: " + (++Score).ToString();
+                if (result == DialogResult.Yes)
+                {
+                    this.stripOfLife.Width = 200;
+                    this.stripOfLifeMax.Width = 200;
+
+                    Score = 0;
+                    ScoreLabel.Text = "Счёт: " + Score.ToString();
+
+                    this.Life.Text = stripOfLife.Width.ToString();
+
+                    timerGamePlay.Stop();
+                    timerGamePlay.Start();
+
+                    TimerGame.Stop();
+                    TimerGame.Start();
+
+                    TimerHit.Stop();
+
+                    hammerIsHit = false;
+
+                    this.TopMost = true;
+                }
+                else
+                    Application.Exit();
             }
         }
 
@@ -165,14 +201,36 @@ namespace HitMazonbotGame
 
         private void FormPlay_MouseDown(object sender, MouseEventArgs e)
         {
+
             if (MouseEnterHeader == false && countTick == 0)
             {
-                timerHit.Start();
+                TimerHit.Start();
                 hammerIsHit = true;
+            }
+
+            if (localPosition.X > currentMazonObjectRect.X && localPosition.X < (currentMazonObjectRect.X + 50)
+                && (localPosition.Y + 20) > currentMazonObjectRect.Y && (localPosition.Y + 20) < (currentMazonObjectRect.Y + 50)
+                && hammerIsHit)
+            {
+                mazonObjectFlag = true;
+
+                ScoreLabel.Text = "Счёт: " + (++Score).ToString();
+
+                if ((stripOfLife.Width + 5) > 200)
+                    stripOfLife.Width = 200;
+                else
+                    stripOfLife.Width += 5;
+
+                Life.Text = stripOfLife.Width.ToString();
+            }
+            else if (MouseEnterHeader == false && countTick == 0)
+            {
+                stripOfLife.Width -= 10;
+                Life.Text = stripOfLife.Width.ToString();
             }
         }
 
-        private void timerHit_Tick(object sender, EventArgs e)
+        private void TimerHit_Tick(object sender, EventArgs e)
         {
             countTick++;
 
@@ -182,9 +240,15 @@ namespace HitMazonbotGame
             }
             else if (countTick >= 4)
             {
-                timerHit.Stop();
+                TimerHit.Stop();
                 countTick = 0;
             }
+        }
+
+        private void TimerGamePlay_Tick(object sender, EventArgs e)
+        {
+            stripOfLife.Width -= HitOnTick;
+            Life.Text = stripOfLife.Width.ToString();
         }
     }
 }

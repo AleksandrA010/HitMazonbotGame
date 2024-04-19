@@ -6,7 +6,6 @@ namespace HitMazonbotGame
 {
     public partial class FormMain : Form
     {
-        FormPlay formPlay = null;
         public FormMain()
         {
             InitializeComponent();
@@ -68,7 +67,7 @@ namespace HitMazonbotGame
         private void ButtonPlay_Click(object sender, EventArgs e)
         {
             this.Hide();
-            formPlay = new FormPlay();
+            FormPlay formPlay = new FormPlay();
             formPlay.Show();
             formPlay.Location = this.Location;
         }

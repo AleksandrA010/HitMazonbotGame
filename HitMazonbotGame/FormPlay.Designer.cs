@@ -33,10 +33,15 @@
             this.Title = new System.Windows.Forms.Label();
             this.buttonHide = new System.Windows.Forms.Button();
             this.buttonExit2 = new System.Windows.Forms.Button();
-            this.timerGame = new System.Windows.Forms.Timer(this.components);
-            this.timerHit = new System.Windows.Forms.Timer(this.components);
+            this.TimerGame = new System.Windows.Forms.Timer(this.components);
+            this.TimerHit = new System.Windows.Forms.Timer(this.components);
             this.ScoreLabel = new System.Windows.Forms.Label();
+            this.stripOfLife = new System.Windows.Forms.Panel();
+            this.stripOfLifeMax = new System.Windows.Forms.Panel();
+            this.timerGamePlay = new System.Windows.Forms.Timer(this.components);
+            this.Life = new System.Windows.Forms.Label();
             this.Header.SuspendLayout();
+            this.stripOfLifeMax.SuspendLayout();
             this.SuspendLayout();
             // 
             // Header
@@ -99,24 +104,56 @@
             this.buttonExit2.UseVisualStyleBackColor = true;
             this.buttonExit2.Click += new System.EventHandler(this.ButtonExit2_Click);
             // 
-            // timerGame
+            // TimerGame
             // 
-            this.timerGame.Enabled = true;
-            this.timerGame.Interval = 50;
-            this.timerGame.Tick += new System.EventHandler(this.timerGame_Tick);
+            this.TimerGame.Enabled = true;
+            this.TimerGame.Interval = 50;
+            this.TimerGame.Tick += new System.EventHandler(this.TimerGame_Tick);
             // 
-            // timerHit
+            // TimerHit
             // 
-            this.timerHit.Tick += new System.EventHandler(this.timerHit_Tick);
+            this.TimerHit.Tick += new System.EventHandler(this.TimerHit_Tick);
             // 
             // ScoreLabel
             // 
-            this.ScoreLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ScoreLabel.Location = new System.Drawing.Point(12, 384);
+            this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ScoreLabel.Location = new System.Drawing.Point(12, 396);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(800, 31);
+            this.ScoreLabel.Size = new System.Drawing.Size(103, 17);
             this.ScoreLabel.TabIndex = 1;
             this.ScoreLabel.Text = "Счёт: 0";
+            // 
+            // stripOfLife
+            // 
+            this.stripOfLife.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.stripOfLife.Location = new System.Drawing.Point(0, 0);
+            this.stripOfLife.Name = "stripOfLife";
+            this.stripOfLife.Size = new System.Drawing.Size(300, 12);
+            this.stripOfLife.TabIndex = 3;
+            // 
+            // stripOfLifeMax
+            // 
+            this.stripOfLifeMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.stripOfLifeMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.stripOfLifeMax.Controls.Add(this.stripOfLife);
+            this.stripOfLifeMax.Location = new System.Drawing.Point(508, 400);
+            this.stripOfLifeMax.Name = "stripOfLifeMax";
+            this.stripOfLifeMax.Size = new System.Drawing.Size(300, 12);
+            this.stripOfLifeMax.TabIndex = 2;
+            // 
+            // timerGamePlay
+            // 
+            this.timerGamePlay.Interval = 2000;
+            this.timerGamePlay.Tick += new System.EventHandler(this.TimerGamePlay_Tick);
+            // 
+            // Life
+            // 
+            this.Life.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Life.Location = new System.Drawing.Point(450, 396);
+            this.Life.Name = "Life";
+            this.Life.Size = new System.Drawing.Size(43, 17);
+            this.Life.TabIndex = 3;
+            this.Life.Text = "200";
             // 
             // FormPlay
             // 
@@ -124,6 +161,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(824, 424);
+            this.Controls.Add(this.Life);
+            this.Controls.Add(this.stripOfLifeMax);
             this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.Header);
             this.DoubleBuffered = true;
@@ -134,6 +173,7 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormPlay_MouseDown);
             this.Header.ResumeLayout(false);
             this.Header.PerformLayout();
+            this.stripOfLifeMax.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -144,8 +184,12 @@
         private System.Windows.Forms.Button buttonHide;
         private System.Windows.Forms.Button buttonExit2;
         private System.Windows.Forms.Label Title;
-        private System.Windows.Forms.Timer timerGame;
-        private System.Windows.Forms.Timer timerHit;
+        private System.Windows.Forms.Timer TimerGame;
+        private System.Windows.Forms.Timer TimerHit;
         private System.Windows.Forms.Label ScoreLabel;
+        private System.Windows.Forms.Panel stripOfLife;
+        private System.Windows.Forms.Panel stripOfLifeMax;
+        private System.Windows.Forms.Timer timerGamePlay;
+        private System.Windows.Forms.Label Life;
     }
 }
