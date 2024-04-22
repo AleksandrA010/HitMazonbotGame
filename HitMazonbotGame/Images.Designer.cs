@@ -63,6 +63,16 @@ namespace HitMazonbotGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BlurredBackground {
+            get {
+                object obj = ResourceManager.GetObject("BlurredBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Hammer {
             get {
                 object obj = ResourceManager.GetObject("Hammer", resourceCulture);
@@ -86,6 +96,26 @@ namespace HitMazonbotGame {
         internal static System.Drawing.Bitmap MazonBot {
             get {
                 object obj = ResourceManager.GetObject("MazonBot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Menu {
+            get {
+                object obj = ResourceManager.GetObject("Menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MenuEnter {
+            get {
+                object obj = ResourceManager.GetObject("MenuEnter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

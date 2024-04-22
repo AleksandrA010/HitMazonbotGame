@@ -126,4 +126,25 @@
   <metadata name="timerGamePlay.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>269, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Menu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
+        MAAA6mAAADqYAAAXcJy6UTwAAADeUExUReDg4N/f3+Hh4dzc3OLi4s7Nznt8fmFjZqanqN7e3re4uZ6e
+        oJ2en6ioqtXV1YGChCQoLiMnLj5BRsbGx7q6uzs+QyktMyotMysvNYeIimttcCMnLSYqMDAzOby9vqur
+        rCktMiUpLyImLG5vcq6ur0RGSzI1O3J0d9jY2NTU1X5/gV1fY2hpbLm5usjIyLq6utra2trZ2t3c3Nvb
+        29TU1MHBwl5gZEhLT4uLjZmZm3h6fXl7f3h7foWFiMnJyXR1eCQpLzU3PLCxsi8yN3l6feDf33Jzd2dp
+        bGJjZv///+xNUNYAAAAJcEhZcwAAEnEAABJxAfPceo4AAAAHdElNRQfoBBQQKzhebLPAAAAAx0lEQVQ4
+        T+3S1w7CIBQGYKCuOuseVeu27jrq3vv9n0iaUBW4EO806ZdwQ3/C4fQAx6+DZH0CEZQQAC4Wexgit8fr
+        A7I/QAmGwtw1ESUaiyeSqTQlkyWfn+Scmi8UtZJSplSqMgnYUK3eaOqtdofW7eHCGf2Bjms1KMMRYkuE
+        aDzBe+StL2wQInM6m0vGYrl6t95sueRO3R/M40mhqecLCdhEg19cLfgYTLA9VsOvfMNvXMOFf6HoUFhj
+        dhcaM9HBxUmyHP8FgAeiLC48rzWEDQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="timerDifficulty.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>430, 17</value>
+  </metadata>
+  <metadata name="timerTime.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>585, 17</value>
+  </metadata>
 </root>

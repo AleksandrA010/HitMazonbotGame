@@ -99,34 +99,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TitleImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImageBackGround1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\HammerHit.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MazonBot.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HammerBeforeHit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HammerAfterHit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HammerrAfterHit.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HammerrBeforeHit.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Hammerr.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Hammer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuEnter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlurredBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TitleImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlay));
             this.Header = new System.Windows.Forms.Panel();
             this.Title = new System.Windows.Forms.Label();
             this.buttonHide = new System.Windows.Forms.Button();
@@ -40,8 +41,23 @@
             this.stripOfLifeMax = new System.Windows.Forms.Panel();
             this.timerGamePlay = new System.Windows.Forms.Timer(this.components);
             this.Life = new System.Windows.Forms.Label();
+            this.Menu = new System.Windows.Forms.Button();
+            this.Pause = new System.Windows.Forms.Panel();
+            this.MainMenu = new System.Windows.Forms.Button();
+            this.Continue = new System.Windows.Forms.Button();
+            this.PauseTitle = new System.Windows.Forms.Label();
+            this.panelGameOver = new System.Windows.Forms.Panel();
+            this.MenuGameOver = new System.Windows.Forms.Button();
+            this.PlayGameOver = new System.Windows.Forms.Button();
+            this.ScoreGameOver = new System.Windows.Forms.Label();
+            this.TextGameOver = new System.Windows.Forms.Label();
+            this.timerDifficulty = new System.Windows.Forms.Timer(this.components);
+            this.timerTime = new System.Windows.Forms.Timer(this.components);
+            this.DifficultLabel = new System.Windows.Forms.Label();
             this.Header.SuspendLayout();
             this.stripOfLifeMax.SuspendLayout();
+            this.Pause.SuspendLayout();
+            this.panelGameOver.SuspendLayout();
             this.SuspendLayout();
             // 
             // Header
@@ -117,9 +133,9 @@
             // ScoreLabel
             // 
             this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ScoreLabel.Location = new System.Drawing.Point(12, 396);
+            this.ScoreLabel.Location = new System.Drawing.Point(12, 370);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(103, 17);
+            this.ScoreLabel.Size = new System.Drawing.Size(160, 20);
             this.ScoreLabel.TabIndex = 1;
             this.ScoreLabel.Text = "Счёт: 0";
             // 
@@ -155,12 +171,170 @@
             this.Life.TabIndex = 3;
             this.Life.Text = "200";
             // 
+            // Menu
+            // 
+            this.Menu.FlatAppearance.BorderSize = 0;
+            this.Menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Menu.Image = ((System.Drawing.Image)(resources.GetObject("Menu.Image")));
+            this.Menu.Location = new System.Drawing.Point(772, 46);
+            this.Menu.Name = "Menu";
+            this.Menu.Size = new System.Drawing.Size(40, 40);
+            this.Menu.TabIndex = 4;
+            this.Menu.UseVisualStyleBackColor = true;
+            this.Menu.Click += new System.EventHandler(this.Menu_Click);
+            this.Menu.MouseEnter += new System.EventHandler(this.Menu_MouseEnter);
+            this.Menu.MouseLeave += new System.EventHandler(this.Menu_MouseLeave);
+            // 
+            // Pause
+            // 
+            this.Pause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(50)))));
+            this.Pause.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pause.Controls.Add(this.MainMenu);
+            this.Pause.Controls.Add(this.Continue);
+            this.Pause.Controls.Add(this.PauseTitle);
+            this.Pause.Enabled = false;
+            this.Pause.Location = new System.Drawing.Point(282, 91);
+            this.Pause.Name = "Pause";
+            this.Pause.Size = new System.Drawing.Size(260, 257);
+            this.Pause.TabIndex = 5;
+            this.Pause.Visible = false;
+            // 
+            // MainMenu
+            // 
+            this.MainMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.MainMenu.FlatAppearance.BorderSize = 0;
+            this.MainMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.MainMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MainMenu.Location = new System.Drawing.Point(56, 156);
+            this.MainMenu.Name = "MainMenu";
+            this.MainMenu.Size = new System.Drawing.Size(154, 44);
+            this.MainMenu.TabIndex = 2;
+            this.MainMenu.Text = "Главное Меню";
+            this.MainMenu.UseVisualStyleBackColor = false;
+            this.MainMenu.Click += new System.EventHandler(this.MainMenu_Click);
+            // 
+            // Continue
+            // 
+            this.Continue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Continue.FlatAppearance.BorderSize = 0;
+            this.Continue.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.Continue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Continue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Continue.Location = new System.Drawing.Point(56, 93);
+            this.Continue.Name = "Continue";
+            this.Continue.Size = new System.Drawing.Size(154, 44);
+            this.Continue.TabIndex = 1;
+            this.Continue.Text = "Продолжить";
+            this.Continue.UseVisualStyleBackColor = false;
+            this.Continue.Click += new System.EventHandler(this.Continue_Click);
+            // 
+            // PauseTitle
+            // 
+            this.PauseTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PauseTitle.ForeColor = System.Drawing.Color.White;
+            this.PauseTitle.Location = new System.Drawing.Point(60, 23);
+            this.PauseTitle.Name = "PauseTitle";
+            this.PauseTitle.Size = new System.Drawing.Size(141, 43);
+            this.PauseTitle.TabIndex = 0;
+            this.PauseTitle.Text = "Пауза";
+            this.PauseTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelGameOver
+            // 
+            this.panelGameOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(50)))));
+            this.panelGameOver.Controls.Add(this.MenuGameOver);
+            this.panelGameOver.Controls.Add(this.PlayGameOver);
+            this.panelGameOver.Controls.Add(this.ScoreGameOver);
+            this.panelGameOver.Controls.Add(this.TextGameOver);
+            this.panelGameOver.Enabled = false;
+            this.panelGameOver.Location = new System.Drawing.Point(262, 90);
+            this.panelGameOver.Name = "panelGameOver";
+            this.panelGameOver.Size = new System.Drawing.Size(300, 240);
+            this.panelGameOver.TabIndex = 6;
+            this.panelGameOver.Visible = false;
+            // 
+            // MenuGameOver
+            // 
+            this.MenuGameOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.MenuGameOver.FlatAppearance.BorderSize = 0;
+            this.MenuGameOver.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.MenuGameOver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MenuGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MenuGameOver.Location = new System.Drawing.Point(160, 180);
+            this.MenuGameOver.Name = "MenuGameOver";
+            this.MenuGameOver.Size = new System.Drawing.Size(120, 40);
+            this.MenuGameOver.TabIndex = 7;
+            this.MenuGameOver.Text = "В меню";
+            this.MenuGameOver.UseVisualStyleBackColor = false;
+            this.MenuGameOver.Click += new System.EventHandler(this.MenuGameOver_Click);
+            // 
+            // PlayGameOver
+            // 
+            this.PlayGameOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.PlayGameOver.FlatAppearance.BorderSize = 0;
+            this.PlayGameOver.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.PlayGameOver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlayGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PlayGameOver.Location = new System.Drawing.Point(20, 180);
+            this.PlayGameOver.Name = "PlayGameOver";
+            this.PlayGameOver.Size = new System.Drawing.Size(120, 40);
+            this.PlayGameOver.TabIndex = 6;
+            this.PlayGameOver.Text = "Заново";
+            this.PlayGameOver.UseVisualStyleBackColor = false;
+            this.PlayGameOver.Click += new System.EventHandler(this.PlayGameOver_Click);
+            // 
+            // ScoreGameOver
+            // 
+            this.ScoreGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ScoreGameOver.ForeColor = System.Drawing.Color.White;
+            this.ScoreGameOver.Location = new System.Drawing.Point(75, 90);
+            this.ScoreGameOver.Name = "ScoreGameOver";
+            this.ScoreGameOver.Size = new System.Drawing.Size(150, 30);
+            this.ScoreGameOver.TabIndex = 4;
+            this.ScoreGameOver.Text = "Ваш счёт: ";
+            this.ScoreGameOver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TextGameOver
+            // 
+            this.TextGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TextGameOver.ForeColor = System.Drawing.Color.White;
+            this.TextGameOver.Location = new System.Drawing.Point(65, 30);
+            this.TextGameOver.Name = "TextGameOver";
+            this.TextGameOver.Size = new System.Drawing.Size(170, 40);
+            this.TextGameOver.TabIndex = 3;
+            this.TextGameOver.Text = "Игра окончена";
+            this.TextGameOver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timerDifficulty
+            // 
+            this.timerDifficulty.Interval = 20000;
+            this.timerDifficulty.Tick += new System.EventHandler(this.TimerDifficulty_Tick);
+            // 
+            // timerTime
+            // 
+            this.timerTime.Enabled = true;
+            this.timerTime.Interval = 1000;
+            // 
+            // DifficultLabel
+            // 
+            this.DifficultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DifficultLabel.Location = new System.Drawing.Point(12, 393);
+            this.DifficultLabel.Name = "DifficultLabel";
+            this.DifficultLabel.Size = new System.Drawing.Size(160, 20);
+            this.DifficultLabel.TabIndex = 9;
+            this.DifficultLabel.Text = "Сложность: 0";
+            // 
             // FormPlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(824, 424);
+            this.Controls.Add(this.DifficultLabel);
+            this.Controls.Add(this.panelGameOver);
+            this.Controls.Add(this.Pause);
+            this.Controls.Add(this.Menu);
             this.Controls.Add(this.Life);
             this.Controls.Add(this.stripOfLifeMax);
             this.Controls.Add(this.ScoreLabel);
@@ -174,6 +348,8 @@
             this.Header.ResumeLayout(false);
             this.Header.PerformLayout();
             this.stripOfLifeMax.ResumeLayout(false);
+            this.Pause.ResumeLayout(false);
+            this.panelGameOver.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -191,5 +367,18 @@
         private System.Windows.Forms.Panel stripOfLifeMax;
         private System.Windows.Forms.Timer timerGamePlay;
         private System.Windows.Forms.Label Life;
+        private new System.Windows.Forms.Button Menu;
+        private System.Windows.Forms.Panel Pause;
+        private System.Windows.Forms.Label PauseTitle;
+        private System.Windows.Forms.Button Continue;
+        private System.Windows.Forms.Button MainMenu;
+        private System.Windows.Forms.Panel panelGameOver;
+        private System.Windows.Forms.Label ScoreGameOver;
+        private System.Windows.Forms.Label TextGameOver;
+        private System.Windows.Forms.Button MenuGameOver;
+        private System.Windows.Forms.Button PlayGameOver;
+        private System.Windows.Forms.Timer timerDifficulty;
+        private System.Windows.Forms.Timer timerTime;
+        private System.Windows.Forms.Label DifficultLabel;
     }
 }

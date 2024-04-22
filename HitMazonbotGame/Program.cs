@@ -13,7 +13,8 @@ namespace HitMazonbotGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            FormMain.formMain = new FormMain();
+            Application.Run(FormMain.formMain);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace HitMazonbotGame
 {
     public partial class FormPlay : Form
     {
+        public static FormPlay formPlay;
         public FormPlay()
         {
             InitializeComponent();
@@ -38,9 +39,19 @@ namespace HitMazonbotGame
             this.Life.Location = new Point(this.Life.Location.X + 20, this.Life.Location.Y - 1);
 
             this.Life.Text = stripOfLife.Width.ToString();
+
+            difficultScore = 0;
+            timerDifficulty.Interval = 20000;
+
             timerGamePlay.Start();
+            TimerGame.Start();
+            timerDifficulty.Start();
+
         }
-        const int HitOnTick = 5;
+
+        int HitOnTick = 5;
+
+        int difficultScore = 0;
 
         bool MouseClickForm = false;
         bool MouseEnterHeader = false;
@@ -58,6 +69,8 @@ namespace HitMazonbotGame
         readonly Bitmap hammer = Images.Hammer;
         readonly Bitmap hammerHit = Images.HammerHit;
         readonly Bitmap mazonBot = Images.MazonBot;
+
+        bool isMenu = false;
 
         Rectangle handlerRect = Rectangle.Empty;
         Rectangle mazonObjectRect = Rectangle.Empty;
@@ -103,6 +116,17 @@ namespace HitMazonbotGame
         {
             Graphics g = e.Graphics;
 
+            if (isMenu)
+            {
+                handlerRect = Rectangle.Empty;
+                mazonObjectRect = Rectangle.Empty;
+
+                g.DrawImage(hammerHit, handlerRect);
+                g.DrawImage(mazonBot, mazonObjectRect);
+
+                return;
+            }
+
             Random random = new Random();
 
             localPosition = this.PointToClient(Cursor.Position);
@@ -124,9 +148,20 @@ namespace HitMazonbotGame
                 g.DrawImage(mazonBot, mazonObjectRect);
             }
 
-            if (localPosition.Y > Header.Height)
+            if (localPosition.Y > Header.Height && 
+                !((localPosition.X) >= Menu.Location.X &&
+                (localPosition.X) <= (Menu.Location.X + 40) &&
+                (localPosition.Y + 8) >= Menu.Location.Y &&
+                (localPosition.Y + 8) <= (Menu.Location.Y + 40)))
             {
                 handlerRect = new Rectangle(localPosition.X - 15, localPosition.Y - 15, 50, 50);
+            }
+            else if ((localPosition.X) >= Menu.Location.X &&
+                (localPosition.X) <= (Menu.Location.X + 40) &&
+                (localPosition.Y + 8) >= Menu.Location.Y &&
+                (localPosition.Y + 8) <= (Menu.Location.Y + 40))
+            {
+                handlerRect = Rectangle.Empty;
             }
 
             if (hammerIsHit)
@@ -154,38 +189,33 @@ namespace HitMazonbotGame
 
             if (int.Parse(Life.Text) == 0)
             {
-                DialogResult result = MessageBox.Show(
-                    $"Ваш счёт: {Score}.\nХотите попробовать снова?",
-                    "Игра окончена",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.DefaultDesktopOnly);
+                TimerGame.Stop();
+                TimerHit.Stop();
+                timerGamePlay.Stop();
+                timerDifficulty.Stop();
 
-                if (result == DialogResult.Yes)
-                {
-                    this.stripOfLife.Width = 200;
-                    this.stripOfLifeMax.Width = 200;
+                hammerIsHit = false;
 
-                    Score = 0;
-                    ScoreLabel.Text = "Счёт: " + Score.ToString();
+                isMenu = true;
+                Refresh();
 
-                    this.Life.Text = stripOfLife.Width.ToString();
+                this.Menu.Hide();
+                this.stripOfLife.Hide();
+                this.stripOfLifeMax.Hide();
+                this.ScoreLabel.Hide();
+                this.Life.Hide();
+                this.DifficultLabel.Hide();
 
-                    timerGamePlay.Stop();
-                    timerGamePlay.Start();
+                this.panelGameOver.Show();
+                this.panelGameOver.Visible = true;
+                this.panelGameOver.Enabled = true;
 
-                    TimerGame.Stop();
-                    TimerGame.Start();
+                Cursor.Show();
 
-                    TimerHit.Stop();
+                this.ScoreGameOver.Text = "Ваш счёт: " + Score.ToString();
 
-                    hammerIsHit = false;
-
-                    this.TopMost = true;
-                }
-                else
-                    Application.Exit();
+                this.BackgroundImage = Images.BlurredBackground;
+                    
             }
         }
 
@@ -249,6 +279,146 @@ namespace HitMazonbotGame
         {
             stripOfLife.Width -= HitOnTick;
             Life.Text = stripOfLife.Width.ToString();
+        }
+
+        private void Menu_MouseEnter(object sender, EventArgs e)
+        {
+            MouseEnterHeader = true;
+            Menu.Image = Images.MenuEnter;
+        }
+
+        private void Menu_MouseLeave(object sender, EventArgs e)
+        {
+            MouseEnterHeader = false;
+            Menu.Image = Images.Menu;
+        }
+
+        private void Menu_Click(object sender, EventArgs e)
+        {
+            TimerGame.Stop();
+            TimerHit.Stop();
+            timerGamePlay.Stop();
+            timerDifficulty.Stop();
+
+            isMenu = true;
+            Refresh();
+
+            this.Menu.Hide();
+            this.stripOfLife.Hide();
+            this.stripOfLifeMax.Hide();
+            this.ScoreLabel.Hide();
+            this.Life.Hide();
+            this.DifficultLabel.Hide();
+
+            this.Pause.Show();
+            this.Pause.Visible = true;
+            this.Pause.Enabled = true;
+
+            Cursor.Show();
+            this.BackgroundImage = Images.BlurredBackground;
+
+        }
+
+        private void Continue_Click(object sender, EventArgs e)
+        {
+            this.Menu.Show();
+            this.stripOfLife.Show();
+            this.stripOfLifeMax.Show();
+            this.ScoreLabel.Show();
+            this.Life.Show();
+            this.DifficultLabel.Show();
+
+            this.Pause.Hide();
+            this.Pause.Visible = false;
+            this.Pause.Enabled = false;
+
+            isMenu = false;
+
+            timerGamePlay.Start();
+            TimerGame.Start();
+            timerDifficulty.Start();
+
+            this.BackgroundImage = null;
+
+            Cursor.Hide();
+        }
+
+        private void MainMenu_Click(object sender, EventArgs e)
+        {
+            TimerGame.Stop();
+            TimerHit.Stop();
+            timerGamePlay.Stop();
+            timerDifficulty.Stop();
+
+            isMenu = false;
+            this.Hide();
+            FormMain.formMain.Show();
+            FormMain.formMain.Location = this.Location;
+            this.Close();
+            Cursor.Hide();
+        }
+
+        private void PlayGameOver_Click(object sender, EventArgs e)
+        {
+            this.Menu.Show();
+            this.stripOfLife.Show();
+            this.stripOfLifeMax.Show();
+            this.ScoreLabel.Show();
+            this.Life.Show();
+            this.DifficultLabel.Show();
+
+            this.panelGameOver.Hide();
+            this.panelGameOver.Visible = false;
+            this.panelGameOver.Enabled = false;
+
+            Cursor.Hide();
+            isMenu = false;
+
+            this.BackgroundImage = null;
+
+            this.stripOfLifeMax.Width = 200;
+            this.stripOfLife.Width = 200;
+
+            Score = 0;
+            ScoreLabel.Text = "Счёт: " + Score.ToString();
+
+            this.Life.Text = stripOfLife.Width.ToString();
+
+            difficultScore = 0;
+            this.DifficultLabel.Text = "Сложность: " + difficultScore.ToString();
+            timerDifficulty.Interval = 20000;
+
+            timerGamePlay.Start();
+            TimerGame.Start();
+            timerDifficulty.Start();
+
+            hammerIsHit = false;
+
+            this.TopMost = true;
+        }
+
+        private void MenuGameOver_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormMain.formMain.Show();
+            FormMain.formMain.Location = this.Location;
+            isMenu = false;
+            this.Close();
+        }
+
+        private void TimerDifficulty_Tick(object sender, EventArgs e)
+        {
+            if (difficultScore < 10)
+            {
+                if (difficultScore % 2 == 0)
+                    timerGamePlay.Interval -= 100;
+                else
+                    HitOnTick++;
+
+                difficultScore++;
+                timerDifficulty.Interval += 10000;
+                DifficultLabel.Text = "Сложность: " + difficultScore.ToString();
+            }
         }
     }
 }
